@@ -1,0 +1,22 @@
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  border: dotted 3px #ccc;
+
+  .upload-hint {
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+
+    .hint-icon {
+      margin-right: 0.25rem;
+    }
+  }
+
+  .file-input {
+    display: none;
+  }
+}

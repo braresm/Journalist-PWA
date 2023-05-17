@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "journalist-app-4c134": {
+      "hosting": {
+        "journalist-app": [
+          "journalist-app-4c134"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "journalist-app-4c134"
+  }
+}

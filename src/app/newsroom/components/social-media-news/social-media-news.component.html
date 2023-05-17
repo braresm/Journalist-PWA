@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="page-header">
+        <h1>Social media news</h1>
+        <div class="page-actions"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ng-container *ngIf="socialMediaNews$ | async as socialMediaNews">
+        <ng-container *ngIf="socialMediaNews.length === 0">
+          No social media news available.
+        </ng-container>
+
+        <app-news-item
+          [item]="item"
+          *ngFor="let item of socialMediaNews"
+          (deleteNews)="onDeleteNews(item)"
+        >
+        </app-news-item>
+      </ng-container>
+    </div>
+  </div>
+</div>

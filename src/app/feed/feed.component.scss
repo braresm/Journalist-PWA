@@ -1,0 +1,16 @@
+.filter-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .filter-input {
+    width: 100%;
+  }
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}

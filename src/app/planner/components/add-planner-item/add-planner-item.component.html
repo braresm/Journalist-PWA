@@ -1,0 +1,121 @@
+<h2 mat-dialog-title>Add Planner</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addPlannerForm">
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" required>
+          <mat-option value="topic"> Topic </mat-option>
+          <mat-option value="task"> Task </mat-option>
+        </mat-select>
+        <mat-error *ngIf="type.hasError('required')">
+          Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Enter title" formControlName="title" />
+        <mat-error *ngIf="title.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Choose date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="plannerDate"
+          formControlName="date"
+          required
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="plannerDate">
+        </mat-datepicker-toggle>
+        <mat-datepicker #plannerDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="Enter author" formControlName="author" />
+        <mat-error *ngIf="author.hasError('required')">
+          Author is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Location</mat-label>
+        <input
+          matInput
+          placeholder="Enter location"
+          formControlName="location"
+        />
+        <mat-error *ngIf="location.hasError('required')">
+          Location is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Contact person</mat-label>
+        <input
+          matInput
+          placeholder="Enter contact person"
+          formControlName="contactPerson"
+        />
+        <mat-error *ngIf="contactPerson.hasError('required')">
+          Contact person is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option value="radio"> Visual radio </mat-option>
+          <mat-option value="tv"> TV </mat-option>
+          <mat-option value="online"> Online </mat-option>
+          <mat-option value="socialmedia"> Social Media </mat-option>
+        </mat-select>
+        <mat-error *ngIf="category.hasError('required')">
+          Category is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Feed topic</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Enter feed topic title"
+          [formControl]="feedTopic"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayTopic">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option.title }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onAddPlannerItem()"
+    [disabled]="!addPlannerForm.valid"
+  >
+    Add planner
+  </button>
+</mat-dialog-actions>

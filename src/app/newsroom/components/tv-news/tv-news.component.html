@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="page-header">
+        <h1>TV news</h1>
+        <div class="page-actions"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ng-container *ngIf="tvNews$ | async as tvNews">
+        <ng-container *ngIf="tvNews.length === 0">
+          No TV news available.
+        </ng-container>
+
+        <app-news-item
+          [item]="item"
+          *ngFor="let item of tvNews"
+          (deleteNews)="onDeleteNews(item)"
+        >
+        </app-news-item>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="page-header">
+        <h1>MAM Archive</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ng-container *ngIf="dataSource.length === 0">
+        No archives available.
+      </ng-container>
+
+      <ng-container *ngIf="dataSource.length > 0">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Filename Column -->
+          <ng-container matColumnDef="filename">
+            <th mat-header-cell *matHeaderCellDef>Filename</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <!-- Extension Column -->
+          <ng-container matColumnDef="extension">
+            <th mat-header-cell *matHeaderCellDef>Extension</th>
+            <td mat-cell *matCellDef="let element">{{ element.extension }}</td>
+          </ng-container>
+
+          <!-- Uploaded Date Column -->
+          <ng-container matColumnDef="uploadedDate">
+            <th mat-header-cell *matHeaderCellDef>Uploaded Date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.uploadedDate.toDate() | date : "medium" }}
+            </td>
+          </ng-container>
+
+          <!-- View Column -->
+          <ng-container matColumnDef="view">
+            <th mat-header-cell *matHeaderCellDef>View</th>
+            <td mat-cell *matCellDef="let element">
+              <a mat-icon-button [href]="element.downloadUrl" target="_blank">
+                <mat-icon>visibility</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </ng-container>
+    </div>
+  </div>
+</div>

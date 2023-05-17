@@ -1,0 +1,23 @@
+.planner-item {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      text-overflow: ellipsis;
+    }
+  }
+
+  .content {
+    .item-date {
+      font-size: 0.85rem;
+      color: #70757a;
+      margin: 0.5rem 0;
+    }
+  }
+}

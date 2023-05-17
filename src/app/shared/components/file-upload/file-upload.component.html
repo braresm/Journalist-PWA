@@ -1,0 +1,20 @@
+<div class="upload-container">
+  <span>{{ file ? file.name : "" }}</span>
+  <input
+    type="file"
+    [accept]="acceptExtensions"
+    class="file-input"
+    #fileUploadInput
+  />
+  <button
+    class="btn btn-secondary mt-3 mb-3"
+    (click)="fileUploadInput.click()"
+    type="button"
+  >
+    Choose file
+  </button>
+  <div class="upload-hint">
+    <mat-icon aria-hidden="false" class="hint-icon">info</mat-icon>
+    Accepted file extension {{ acceptExtensions }}
+  </div>
+</div>

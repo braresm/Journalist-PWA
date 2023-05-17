@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>NIS App</span>
+    <span class="bar-spacer"></span>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="onPwaInstall()"
+      *ngIf="isInstallBtnVisible()"
+    >
+      Install PWA
+    </button>
+
+    <button mat-button routerLink="/feed">Feed</button>
+    <button mat-button routerLink="/planner">Planner</button>
+    <button mat-button [matMenuTriggerFor]="newsroomMenu">Newsroom</button>
+    <mat-menu #newsroomMenu="matMenu">
+      <button mat-menu-item routerLink="/newsroom/radio">Visual radio</button>
+      <button mat-menu-item routerLink="/newsroom/tv">TV</button>
+      <button mat-menu-item routerLink="/newsroom/online">Online</button>
+      <button mat-menu-item routerLink="/newsroom/social-media">
+        Social media
+      </button>
+    </mat-menu>
+    <button mat-button routerLink="/mam">MAM</button>
+    <button mat-button [matMenuTriggerFor]="editMenu">Editing</button>
+    <mat-menu #editMenu="matMenu">
+      <a mat-menu-item href="https://www.photopea.com/" target="_blank"
+        >Video editing</a
+      >
+      <a mat-menu-item href="https://clideo.com/video-editor" target="_blank"
+        >Photo editing</a
+      >
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="page-wrapper">
+  <router-outlet></router-outlet>
+</div>

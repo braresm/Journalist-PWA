@@ -1,0 +1,38 @@
+<div class="planner-item">
+  <div class="header">
+    <div class="title">{{ item.title }}</div>
+    <div class="actions">
+      <button mat-icon-button [matMenuTriggerFor]="plannerItemOptions">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu #plannerItemOptions="matMenu">
+        <button mat-menu-item (click)="onPublish()">
+          <mat-icon aria-hidden="false" fontIcon="published_with_changes">
+          </mat-icon>
+          Publish to newsroom
+        </button>
+        <button mat-menu-item (click)="onCopy()">
+          <mat-icon aria-hidden="false" fontIcon="content_copy"></mat-icon>
+          Copy
+        </button>
+        <button mat-menu-item (click)="onClose()">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+          Close
+        </button>
+        <button mat-menu-item (click)="onEdit()">
+          <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+          Edit
+        </button>
+        <button mat-menu-item (click)="onDelete()">
+          <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+          Delete
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="content">
+    <div class="item-date">
+      Date: {{ item.date.toDate() | date : "mediumDate" }}
+    </div>
+  </div>
+</div>

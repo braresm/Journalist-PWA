@@ -1,0 +1,111 @@
+<h2 mat-dialog-title>Add Feed</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addFeedForm">
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Enter title</mat-label>
+        <input
+          matInput
+          placeholder="Enter feed title"
+          formControlName="title"
+        />
+        <mat-error *ngIf="title.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Message</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter feed message..."
+          formControlName="message"
+        ></textarea>
+        <mat-error *ngIf="message.hasError('required')">
+          Message is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option value="sport"> Sport </mat-option>
+          <mat-option value="news"> News </mat-option>
+          <mat-option value="miscellaneous"> Miscellaneous </mat-option>
+        </mat-select>
+        <mat-error *ngIf="category.hasError('required')">
+          Category is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Feed keywords</mat-label>
+        <mat-chip-grid
+          #feedKeywordGrid
+          aria-label="Enter keywords"
+          formControlName="keywords"
+        >
+          <ng-container *ngFor="let keyword of keywords.value">
+            <mat-chip-row *ngIf="keyword" (removed)="removeKeyword(keyword)">
+              {{ keyword }}
+              <button matChipRemove aria-label="'remove ' + keyword">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </ng-container>
+        </mat-chip-grid>
+        <input
+          placeholder="Write keyword and press enter"
+          [matChipInputFor]="feedKeywordGrid"
+          (matChipInputTokenEnd)="addKeyword($event)"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Source</mat-label>
+        <mat-select formControlName="source" required>
+          <mat-option *ngFor="let source of feedSources" [value]="source">
+            {{ source }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="source.hasError('required')">
+          Source is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of feedStatuses" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="status.hasError('required')">
+          Status is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <app-file-upload
+        formControlName="image"
+        acceptExtensions=".png,.jpg,.jpeg"
+      ></app-file-upload>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onAddFeed()"
+    [disabled]="!addFeedForm.valid"
+  >
+    Add feed
+  </button>
+</mat-dialog-actions>

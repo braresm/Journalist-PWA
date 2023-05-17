@@ -1,0 +1,100 @@
+<mat-card class="feed-item">
+  <mat-card-content>
+    <div class="alert alert-danger" role="alert" *ngIf="feed.alert">
+      {{ alertMessage }}
+    </div>
+    <div class="header">
+      <div>
+        <h2>{{ feed.title }}</h2>
+        <div class="posted-date" *ngIf="feed.createdDate">
+          Arival time {{ feed.createdDate.toDate() | date : "medium" }}
+        </div>
+      </div>
+
+      <div class="feed-actions">
+        <button mat-icon-button [matMenuTriggerFor]="feedOptions">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #feedOptions="matMenu">
+          <button mat-menu-item (click)="onAlertOnScreen()">
+            <mat-icon
+              aria-hidden="false"
+              fontIcon="notifications_active"
+            ></mat-icon>
+            Alert on screen
+          </button>
+          <button mat-menu-item (click)="onAlertOnEmail()">
+            <mat-icon
+              aria-hidden="false"
+              fontIcon="notifications_active"
+            ></mat-icon>
+            Alert on email
+          </button>
+          <button mat-menu-item (click)="onRemoveAlert()">
+            <mat-icon
+              aria-hidden="false"
+              fontIcon="notifications_off"
+            ></mat-icon>
+            Remove alert
+          </button>
+          <button mat-menu-item (click)="onSendFeedByEmail()">
+            <mat-icon aria-hidden="false" fontIcon="mail"></mat-icon>
+            Send by email
+          </button>
+          <button mat-menu-item (click)="onPrintFeed()">
+            <mat-icon aria-hidden="false" fontIcon="print"></mat-icon>
+            Print
+          </button>
+          <button mat-menu-item (click)="onDelete()">
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+            Delete
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="content">
+      <div class="image">
+        <img mat-card-image [src]="feed.imageUrl" alt="Photo of feed item" />
+      </div>
+      <div class="details">
+        <div>
+          <div><strong>Message</strong></div>
+          {{ feed.message }}
+        </div>
+        <div>
+          <div><strong>Status</strong></div>
+          <mat-chip class="status"> {{ feed.status }}</mat-chip>
+        </div>
+        <div>
+          <div><strong>Keywords</strong></div>
+          <mat-chip-listbox>
+            <mat-chip-option *ngFor="let keyword of feed.keywords">
+              {{ keyword }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div id="printFeed" class="print-feed">
+  <html>
+    <head>
+      <title>Feed {{ feed.title }}</title>
+    </head>
+    <body>
+      <div class="print-header">
+        <h1>{{ feed.title }}</h1>
+      </div>
+      <br /><br />
+      <div class="print-content">
+        {{ feed.message }}
+      </div>
+      <br /><br />
+      <div class="print-footer">
+        <div>Arival time {{ feed.createdDate.toDate() | date : "medium" }}</div>
+        <div>Status {{ feed.status }}</div>
+      </div>
+    </body>
+  </html>
+</div>

@@ -1,0 +1,38 @@
+<mat-card class="news-item">
+  <mat-card-content>
+    <div class="header">
+      <div>
+        <h2>{{ item.title }}</h2>
+        <div class="posted-date" *ngIf="item.createdDate">
+          Published date
+          {{ item.createdDate.toDate() | date : "medium" }}
+        </div>
+      </div>
+
+      <div class="news-actions">
+        <button mat-icon-button [matMenuTriggerFor]="newsOptions">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #newsOptions="matMenu">
+          <button mat-menu-item (click)="onUploadFile()">
+            <mat-icon aria-hidden="false" fontIcon="attach_file"></mat-icon>
+            Upload file
+          </button>
+          <button mat-menu-item (click)="onViewFiles()">
+            <mat-icon aria-hidden="false" fontIcon="visibility"></mat-icon>
+            View files
+          </button>
+          <button mat-menu-item (click)="onDelete()">
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+            Delete
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="content">
+      <div>
+        {{ item.message }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

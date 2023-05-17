@@ -1,0 +1,53 @@
+.feed-item {
+  margin-bottom: 1rem;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .posted-date {
+      font-size: 0.85rem;
+      color: #70757a;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      width: 180px;
+      max-width: 100%;
+      border-radius: 1rem;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-left: 1rem;
+
+      .status {
+        background-color: #ff9900;
+      }
+    }
+  }
+}
+
+.print-feed {
+  display: none;
+}
+
+@media print {
+  .print-feed {
+    display: block;
+  }
+}
